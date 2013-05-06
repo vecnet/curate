@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   class_attribute :theme
-  self.theme = 'curate_nd'
+  self.theme =  Curate::Engine.config.theme || 'curate_nd'
   helper_method :theme
 
   # Please be sure to impelement current_user and user_session. Blacklight depends on
