@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   include Sufia::Controller
 
   include BreadcrumbsOnRails::ActionController
-  add_breadcrumb "Dashboard", :dashboard_index_path
 
   def self.with_themed_layout(view_name = nil)
     if view_name
@@ -65,6 +64,11 @@ class ApplicationController < ActionController::Base
     true
   end
   helper_method :show_action_bar?
+
+  def show_breadcrumbs?
+    false
+  end
+  helper_method :show_breadcrumbs?
 
   def show_site_search?
     true
