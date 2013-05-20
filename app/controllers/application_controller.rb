@@ -32,15 +32,15 @@ class ApplicationController < ActionController::Base
 
   helper ApplicationHelper
 
-  rescue_from StandardError, with: :exception_handler
-  def exception_handler(exception)
-    raise exception if Rails.configuration.consider_all_requests_local
-    raise exception unless ActionDispatch::ExceptionWrapper.rescue_responses[exception.class.name]
-
-    wrapper = ActionDispatch::ExceptionWrapper.new(env, exception)
-    render_response_for_error(wrapper)
-  end
-  protected :exception_handler
+  #rescue_from StandardError, with: :exception_handler
+  #def exception_handler(exception)
+  #  raise exception if Rails.configuration.consider_all_requests_local
+  #  raise exception unless ActionDispatch::ExceptionWrapper.rescue_responses[exception.class.name]
+  #
+  #  wrapper = ActionDispatch::ExceptionWrapper.new(env, exception)
+  #  render_response_for_error(wrapper)
+  #end
+  #protected :exception_handler
 
   def set_return_location_from_status_code(status_code)
     if status_code == 401
