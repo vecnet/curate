@@ -75,16 +75,16 @@ module ApplicationHelper
 
   def extract_dom_label_class_and_link_title(document)
     hash = document.stringify_keys
-    dom_label_class, link_title = "label-important", "Private"
+    dom_label_class, link_title = 'label-important', t('sufia.access_label.private')
     if hash['read_access_group_t'].present?
       if hash['read_access_group_t'].include?('public')
         if hash['embargo_release_date_dt'].present?
-          dom_label_class, link_title = 'label-warning', 'Open Access with Embargo'
+          dom_label_class, link_title = 'label-warning', t('sufia.access_label.public_embargo')
         else
-          dom_label_class, link_title = 'label-success', 'Open Access'
+          dom_label_class, link_title = 'label-success', t('sufia.access_label.public')
         end
       elsif hash['read_access_group_t'].include?('registered')
-        dom_label_class, link_title = "label-info", t('sufia.institution_name')
+        dom_label_class, link_title = "label-info", t('sufia.access_label.registered')
       end
     end
     return dom_label_class, link_title
