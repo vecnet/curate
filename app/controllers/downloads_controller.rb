@@ -11,12 +11,24 @@ class DownloadsController < ApplicationController
 
   def show
     authorize!(:show, generic_file)
-    send_data(
-      generic_file.content.content,
-      type: generic_file.content.mimeType,
-      filename: generic_file.filename,
-      disposition: 'inline'
-    )
+    send_content (generic_file)
   end
 
+  protected
+  def send_content (asset)
+    opts = {}
+    ds = nil
+    opts[:filename] = params["filename"] || asset.label
+    opts[:disposition] = 'inline'
+    if params.has_key?(:datastream_id)
+      opts[:filename] = params[:datastream_id]
+      ds = asset.datastreams[params[:datastream_id]]
+    end
+    ds = asset.content.content if ds.nil?
+    raise ActionController::RoutingError.new('Not Found') if ds.nil?
+    data = ds.content
+    opts[:type] = ds.mimeType
+    send_data data, opts
+    return
+  end
 end
