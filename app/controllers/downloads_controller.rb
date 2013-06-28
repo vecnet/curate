@@ -24,7 +24,7 @@ class DownloadsController < ApplicationController
       opts[:filename] = params[:datastream_id]
       ds = asset.datastreams[params[:datastream_id]]
     end
-    ds = asset.content.content if ds.nil?
+    ds = asset.datastreams["content"] if ds.nil?
     raise ActionController::RoutingError.new('Not Found') if ds.nil?
     data = ds.content
     opts[:type] = ds.mimeType
