@@ -199,7 +199,28 @@ ActiveRecord::Schema.define(:version => 20130417124661) do
     t.integer  "sign_in_count",              :default => 0
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.string   "facebook_handle"
+    t.string   "twitter_handle"
+    t.string   "googleplus_handle"
+    t.string   "display_name"
+    t.string   "address"
+    t.string   "admin_area"
+    t.string   "department"
+    t.string   "title"
+    t.string   "office"
+    t.string   "chat_id"
+    t.string   "website"
+    t.string   "affiliation"
+    t.string   "telephone"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.text     "group_list"
+    t.datetime "groups_last_update"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email"
 
   create_table "version_committers", :force => true do |t|
     t.string   "obj_id"
@@ -209,9 +230,5 @@ ActiveRecord::Schema.define(:version => 20130417124661) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
-
-  add_foreign_key "notifications", "conversations", :name => "notifications_on_conversation_id"
-
-  add_foreign_key "receipts", "notifications", :name => "receipts_on_notification_id"
 
 end

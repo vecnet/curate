@@ -11,3 +11,4 @@ Gemfile.lock
 .rvmrc
 vendor/cache
 .sass-cache
+.ruby-version
