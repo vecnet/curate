@@ -18,11 +18,16 @@ class FileContentDatastream
   def run_fits!(file_path)
     anti_virus_scanner.call(file_path)
     characterization_runner.call(file_path)
+    full_text_extractor.call
   end
 
   protected
   def anti_virus_scanner
     AntiVirusScanner.new(self)
+  end
+
+  def full_text_extractor
+    FullTextExtractor.new(self)
   end
 
   define_method :characterization_runner do
