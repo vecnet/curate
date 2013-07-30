@@ -17,8 +17,8 @@ class FileContentDatastream
   # on that behavior and first running an Anti-Virus scanner
   def run_fits!(file_path)
     anti_virus_scanner.call(file_path)
-    characterization_runner.call(file_path)
     full_text_extractor.call
+    characterization_runner.call(file_path)
   end
 
   protected
