@@ -10,7 +10,6 @@ class GenericFile
   belongs_to :batch, property: :is_part_of, class_name: 'ActiveFedora::Base'
 
   validates :batch, presence: true
-  validates :file, presence: true, on: :create
 
   class_attribute :human_readable_short_description
   self.human_readable_short_description = "An arbitrary single file."
