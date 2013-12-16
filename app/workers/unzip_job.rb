@@ -2,9 +2,10 @@ require Sufia::Engine.root.join('lib/sufia/jobs/unzip_job')
 
 class UnzipJob
   def run
-      zip_file = GenericFile.find(pid)
+    zip_file = GenericFile.find(pid)
     Zip::Archive.open_buffer(zip_file.content.content) do |archive|
       archive.each do |f|
+        next if f.directory?
         generic_file = GenericFile.new
         generic_file.batch_id = zip_file.batch.pid
         generic_file.file=f
