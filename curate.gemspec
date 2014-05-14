@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency "rails", "3.2.11"
+  s.add_dependency "rails", "~>3.2.11"
   s.add_dependency 'sufia'
   s.add_dependency 'active-fedora', '~>5.6.2'
   s.add_dependency 'solrizer', '~>2'
