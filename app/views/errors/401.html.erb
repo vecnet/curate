@@ -3,3 +3,6 @@
   <h1>Unauthorized</h1>
 <% end %>
 <p>You are not authorized to access the page.</p>
+<% unless current_user %>
+  <p><%= link_to 'Login', user_login_url(request.original_url), :class => 'btn' %></p>
+<% end %>
